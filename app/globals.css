@@ -1,0 +1,426 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    color-scheme: dark;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #edf5ff;
+    background: radial-gradient(ellipse at 50% 0%, #17264a 0%, #070b16 58%);
+    font-family: Rajdhani, sans-serif;
+}
+
+body:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image: linear-gradient(rgba(57, 231, 255, 0.15) 1px,
+            transparent 1px),
+        linear-gradient(90deg, rgba(57, 231, 255, 0.15) 1px, transparent 1px);
+    background-size: 42px 42px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid #39e7ff;
+    outline-offset: 3px;
+}
+
+.app-shell {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: min(900px, calc(100% - 32px));
+    min-height: 100vh;
+    margin: auto;
+    flex-direction: column;
+}
+
+.eyebrow {
+    color: #91a1ba;
+    font: 600 10px Orbitron, sans-serif;
+    letter-spacing: 0.17em;
+}
+
+.panel {
+    border: 1px solid rgba(87, 222, 255, 0.2);
+    background: linear-gradient(145deg,
+            rgba(16, 24, 42, 0.96),
+            rgba(9, 15, 29, 0.96));
+    padding: clamp(24px, 5vw, 48px);
+    box-shadow: 0 20px 80px #0004;
+}
+
+.section-title {
+    font: 700 clamp(25px, 5vw, 39px) / 1.25 Orbitron, sans-serif;
+}
+
+.section-title span {
+    color: #39e7ff;
+}
+
+.primary-button {
+    min-width: 220px;
+    border: 1px solid #39e7ff;
+    background: linear-gradient(100deg, #39e7ff29, #a56bff24);
+    padding: 15px 24px;
+    color: #edf5ff;
+    cursor: pointer;
+    font: 700 11px Orbitron, sans-serif;
+    letter-spacing: 0.12em;
+    transition: 0.2s;
+}
+
+.primary-button span {
+    margin-left: 14px;
+    color: #39e7ff;
+}
+
+.primary-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #39e7ff40;
+    box-shadow: 0 0 25px #39e7ff33;
+}
+
+.primary-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.answer-option {
+    border: 1px solid #263651;
+    background: #0b1221;
+    padding: 14px 16px;
+    color: #edf5ff;
+    cursor: pointer;
+    transition: 0.15s;
+}
+
+.answer-option:hover:not(:disabled),
+.answer-selected {
+    border-color: #39e7ff;
+    background: #39e7ff14;
+}
+
+.answer-option:disabled {
+    cursor: default;
+}
+
+.vault-input {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #39e7ff55;
+    background: #070d19;
+    padding: 14px;
+    color: #39e7ff;
+    font: 700 25px Orbitron, sans-serif;
+    letter-spacing: 0.5em;
+    text-align: center;
+    outline: none;
+}
+
+
+
+
+/* =========================================
+   FINAL VAULT — STAGE 05
+========================================= */
+
+.vault-room {
+    padding-top: 36px;
+    padding-bottom: 36px;
+}
+
+.vault-door {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(57, 231, 255, 0.45);
+    border-radius: 12px;
+    padding: clamp(22px, 5vw, 42px);
+    background:
+        radial-gradient(circle at 50% 35%, rgba(57, 231, 255, 0.12), transparent 38%),
+        linear-gradient(145deg, #18243a, #080e1b 65%);
+    box-shadow:
+        0 0 0 7px #0b1425,
+        0 0 0 9px rgba(57, 231, 255, 0.15),
+        0 25px 90px #000b,
+        inset 0 0 35px rgba(57, 231, 255, 0.05);
+}
+
+.vault-door::before,
+.vault-door::after {
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    border: 1px solid #39e7ff80;
+    border-radius: 50%;
+    background: #39e7ff30;
+    box-shadow: 0 0 10px #39e7ff50;
+}
+
+.vault-door::before {
+    top: 14px;
+    left: 14px;
+}
+
+.vault-door::after {
+    right: 14px;
+    bottom: 14px;
+}
+
+.vault-topline,
+.vault-bottomline {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    color: #71839f;
+    font: 600 9px Orbitron, sans-serif;
+    letter-spacing: 0.12em;
+}
+
+.vault-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #43e6ae;
+}
+
+.vault-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #43e6ae;
+    box-shadow: 0 0 12px #43e6ae;
+    animation: vault-pulse 1.5s infinite;
+}
+
+.vault-emblem {
+    display: flex;
+    justify-content: center;
+    margin: 35px auto 25px;
+}
+
+.vault-outer-ring {
+    display: grid;
+    width: 112px;
+    height: 112px;
+    place-items: center;
+    border: 2px solid #39e7ff80;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #172a42, #080e1b);
+    box-shadow:
+        0 0 0 7px #39e7ff0d,
+        0 0 0 9px #39e7ff25,
+        0 0 30px #39e7ff30,
+        inset 0 0 20px #39e7ff20;
+}
+
+.vault-inner-ring {
+    display: grid;
+    width: 76px;
+    height: 76px;
+    place-items: center;
+    border: 2px solid #a56bff90;
+    border-radius: 50%;
+    background: #0b1425;
+    box-shadow: inset 0 0 18px #a56bff25;
+}
+
+.vault-lock-icon {
+    color: #39e7ff;
+    font-size: 36px;
+    text-shadow: 0 0 18px #39e7ff;
+}
+
+.vault-heading {
+    margin-top: 12px;
+    color: #edf5ff;
+    font: 800 clamp(25px, 5vw, 38px) Orbitron, sans-serif;
+    text-align: center;
+}
+
+.vault-heading span {
+    color: #39e7ff;
+}
+
+.vault-description {
+    max-width: 470px;
+    margin: 14px auto 30px;
+    color: #a8b8cf;
+    font-size: 17px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.vault-code-panel {
+    margin: 0 auto 28px;
+    border: 1px solid #39e7ff30;
+    border-radius: 8px;
+    padding: 22px 14px;
+    background: #050b16a8;
+    box-shadow: inset 0 0 25px #0008;
+    text-align: center;
+}
+
+.vault-label {
+    display: block;
+    margin-bottom: 16px;
+    color: #8296b2;
+    font: 600 10px Orbitron, sans-serif;
+    letter-spacing: 0.14em;
+    text-align: center;
+}
+
+.vault-slots {
+    display: flex;
+    justify-content: center;
+    gap: clamp(8px, 3vw, 16px);
+}
+
+.vault-slot {
+    display: grid;
+    width: clamp(48px, 13vw, 66px);
+    height: clamp(58px, 15vw, 76px);
+    place-items: center;
+    border: 1px solid #263651;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #101c30, #070d19);
+    font: 700 clamp(23px, 6vw, 32px) Orbitron, sans-serif;
+}
+
+.vault-slot-open {
+    border-color: #39e7ff80;
+    color: #39e7ff;
+    text-shadow: 0 0 15px #39e7ff90;
+    box-shadow: inset 0 0 15px #39e7ff12, 0 0 12px #39e7ff12;
+}
+
+.vault-slot-locked {
+    border-style: dashed;
+    color: #52647e;
+}
+
+.vault-hint {
+    margin-top: 17px;
+    color: #a56bff;
+    font: 600 9px Orbitron, sans-serif;
+    letter-spacing: 0.1em;
+}
+
+.vault-input-area {
+    max-width: 360px;
+    margin: 0 auto;
+}
+
+.vault-input-enhanced {
+    max-width: 100%;
+    height: 68px;
+    border: 1px solid #39e7ff90;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #050a14, #101b2e);
+    box-shadow: inset 0 0 20px #39e7ff0b, 0 0 18px #39e7ff12;
+    font-size: 30px;
+    letter-spacing: 0.5em;
+    transition: 0.2s;
+}
+
+.vault-input-enhanced:focus {
+    border-color: #39e7ff;
+    box-shadow: 0 0 22px #39e7ff35, inset 0 0 20px #39e7ff10;
+}
+
+.vault-attempts {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 18px;
+    color: #71839f;
+    font: 600 9px Orbitron, sans-serif;
+    letter-spacing: 0.08em;
+}
+
+.attempt-indicator {
+    width: 19px;
+    height: 6px;
+    border-radius: 5px;
+}
+
+.attempt-active {
+    background: #43e6ae;
+    box-shadow: 0 0 9px #43e6ae80;
+}
+
+.attempt-used {
+    background: #542c3b;
+    opacity: 0.55;
+}
+
+.vault-attempts strong {
+    color: #edf5ff;
+}
+
+.vault-error {
+    min-height: 25px;
+    margin: 18px 0 8px;
+    color: #ff637d;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.vault-unlock-button {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 28px;
+}
+
+.vault-bottomline {
+    border-top: 1px solid #39e7ff20;
+    padding-top: 18px;
+    font-size: 8px;
+}
+
+@keyframes vault-pulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 12px #43e6ae;
+    }
+    50% {
+        opacity: 0.4;
+        box-shadow: 0 0 3px #43e6ae;
+    }
+}
+
+@media (max-width: 480px) {
+    .vault-topline,
+    .vault-bottomline {
+        font-size: 8px;
+    }
+
+    .vault-description {
+        font-size: 15px;
+    }
+}
