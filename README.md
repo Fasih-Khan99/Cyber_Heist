@@ -31,7 +31,7 @@ Firestore collection: `questionGroups`. Documents: `groupA`, `groupB`, `groupC`.
 
 ## Gameplay
 
-Five-minute timer, three lives, eight questions, +100 points per correct answer (maximum 800), four section clues and final vault code `4729`. Each section has two questions.
+Eight-minute timer, three lives, eight questions, +100 points per correct answer (maximum 800), four section clues and final vault code `4729`. Each section has two questions.
 
 ## Security limitation
 
